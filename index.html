@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Url Shortener</title>
+</head>
+<body>
+
+    <div>
+        <h1>Shorten a long Url</h1>
+        <input type="text" id="longUrl" placeholder="Enter URL to Shorten">
+        <button id="short-btn">Shorten URL</button>
+        <button id="reload-btn">Refresh</button>
+        <label for="shortUrl">Shortened URL</label>
+        <textarea id="shortUrl" rows="3"></textarea>
+    </div>
+
+    <script>
+        const shortBtn = document.getElementById('short-btn');
+        const reloadBtn = document.getElementById('reload-btn');
+        const shortUrlTextarea = document.getElementById('shortUrl');
+        
+        shortBtn.addEventListener('click', () => {
+            const longUrl = document.getElementById('longUrl').value;
+            const apiUrl = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl)}`;
+            
+            fetch(apiUrl)
+                .then(response => response.text())
+                .then(data => shortUrlTextarea.value = data)
+                .catch(error => shortUrlTextarea.value = "Error: Unable to shorten Url");
+        });
+        
+        reloadBtn.addEventListener('click', () => location.reload());
+    </script>
+
+</body>
+</html>
