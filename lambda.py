@@ -20,7 +20,7 @@ def lambda_handler(event, context):
         
         chat_id = body['message']['chat']['id']
         
-        url = f'https://api.telegram.org/bot7196704687:AAGYm5_VEyUECYS-UQsmHPtdUDxmc5s8bFM/sendMessage'
+        url = f'https://api.telegram.org/bot{---}/sendMessage'
         payload = {
             'chat_id': chat_id,
             'text': short_url
